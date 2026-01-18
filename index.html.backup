@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Tabanlı AR Heykel Deneyimi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .section:nth-child(3n) {
+            background: linear-gradient(135deg, #ffd3a5 0%, #fd6585 100%);
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid rgba(255,255,255,0.5);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.3em;
+        }
+
+        .section h3 {
+            color: #444;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: #333;
+        }
+
+        ul li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: rgba(255,255,255,0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid rgba(255,255,255,0.8);
+        }
+
+        th {
+            background: rgba(255,255,255,0.4);
+            font-weight: bold;
+            color: #333;
+        }
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .checklist-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .important {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .important h3 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+
+        .important p {
+            color: white;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .footer h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .summary-box {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 QR Tabanlı Artırılmış Gerçeklik ile Heykel Deneyimi</h1>
+            <p>Unified iOS & Android – End-to-End Proje One-Pager</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Hazal'in Doktora Tezi için Hazırlandı 💜</p>
+        </div>
+
+        <div class="content">
+            <!-- Section 1 -->
+            <div class="section">
+                <h2><span class="icon">📱</span> 1. Kullanıcı Deneyimi (UX)</h2>
+                <ul>
+                    <li>Tek QR → tek link → tek deneyim</li>
+                    <li>Uygulama indirme yok</li>
+                    <li>AR ana deneyimdir</li>
+                    <li>Heykel AR'de sabitlenir, kullanıcı etrafında serbestçe dolaşır</li>
+                    <li>Yürümek zorunlu değildir (telefonu çevirerek de inceleme mümkündür)</li>
+                    <li>Aynı link evde web üzerinden 3D inceleme sağlar</li>
+                </ul>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2><span class="icon">💾</span> 2. Deneyimi Geliştirmek için Gerekli Data</h2>
+                
+                <h3>2.1 Heykel Başına Dijital İçerik</h3>
+                
+                <div class="highlight">
+                    <h4><strong>Zorunlu</strong></h4>
+                    <ul>
+                        <li>Heykel ID</li>
+                        <li>Heykel adı</li>
+                        <li>3D model (GLB – web & Android)</li>
+                        <li>3D model (USDZ – iOS AR)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h4><strong>Opsiyonel</strong></h4>
+                    <ul>
+                        <li>Kısa açıklama (2–3 cümle)</li>
+                        <li>Tarih / dönem</li>
+                        <li>Ölçek bilgisi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2><span class="icon">📸</span> 3. 3D Model Üretimi – Fotoğraf Gereksinimleri</h2>
+                
+                <h3>Photogrammetry (önerilen yöntem):</h3>
+                <ul>
+                    <li>Minimum: 40–60 foto</li>
+                    <li>İdeal kalite: 80–120 foto</li>
+                </ul>
+
+                <h3>Çekim Kuralları:</h3>
+                <ul>
+                    <li>360° tam tur</li>
+                    <li>En az 3 yükseklik seviyesi (alt–orta–üst)</li>
+                    <li>Sabit ışık (gölge değişimi olmamalı)</li>
+                    <li>Aynı kamera / lens</li>
+                    <li>Hareketli arka plan yok</li>
+                </ul>
+
+                <div class="highlight">
+                    <p><strong>⏱ Foto çekimi süresi:</strong> 20–30 dk / heykel</p>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2><span class="icon">🔧</span> 4. Fiziksel Gereklilikler</h2>
+                
+                <h3>Kullanıcı</h3>
+                <ul>
+                    <li>iOS veya Android telefon</li>
+                    <li>Kamera + internet</li>
+                    <li>Güncel tarayıcı</li>
+                </ul>
+
+                <h3>Mekân</h3>
+                <ul>
+                    <li>Kaideye sabitlenmiş QR kod</li>
+                    <li>QR boyutu: min. 6×6 cm</li>
+                    <li>Mat baskı</li>
+                    <li>Ek donanım gerekmez</li>
+                </ul>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2><span class="icon">⏰</span> 5. Süre – Bu Proje Benim Ne Kadar Zamanımı Alır?</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aşama</th>
+                                <th>Süre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Foto çekimi</td>
+                                <td>20–30 dk</td>
+                            </tr>
+                            <tr>
+                                <td>3D model üretimi</td>
+                                <td>1–3 saat (bilgisayar işlemi)</td>
+                            </tr>
+                            <tr>
+                                <td>Aktif model temizleme</td>
+                                <td>30–60 dk</td>
+                            </tr>
+                            <tr>
+                                <td>GLB + USDZ export</td>
+                                <td>10–15 dk</td>
+                            </tr>
+                            <tr>
+                                <td>Sisteme ekleme + QR</td>
+                                <td>5–10 dk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight">
+                    <h4><strong>Toplam</strong></h4>
+                    <ul>
+                        <li>İlk heykel: 3–4 saat</li>
+                        <li>Sonraki heykeller: 1,5–2 saat / heykel</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2><span class="icon">✅</span> 6. Heykel Başına Checklist (OPERASYONEL)</h2>
+                
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <h4>A. Fiziksel</h4>
+                        <ul>
+                            <li>Heykel erişilebilir mi?</li>
+                            <li>Etrafında 360° dolaşılabiliyor mu?</li>
+                            <li>Işık sabit mi?</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-item">
+                        <h4>B. Fotoğraf</h4>
+                        <ul>
+                            <li>80–120 foto çekildi</li>
+                            <li>Alt–orta–üst açılar tamam</li>
+                            <li>Gölge / yansıma yok</li>
+                            <li>Fotoğraflar net</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-item">
+                        <h4>C. 3D Model</h4>
+                        <ul>
+                            <li>Photogrammetry tamamlandı</li>
+                            <li>Mesh temizlendi</li>
+                            <li>Texture düzgün</li>
+                            <li>Ölçek kontrol edildi</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-item">
+                        <h4>D. Dosyalar</h4>
+                        <ul>
+                            <li>heykel-id.glb</li>
+                            <li>heykel-id.usdz</li>
+                            <li>Dosya isimleri standart</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist-item">
+                        <h4>E. Sistem</h4>
+                        <ul>
+                            <li>Data dosyasına eklendi</li>
+                            <li>QR üretildi</li>
+                            <li>iOS test edildi</li>
+                            <li>Android test edildi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7 - IMPORTANT -->
+            <div class="important">
+                <h2><span class="icon">💡</span> 7. Hazal'dan İstenmesi Gereken Bilgiler</h2>
+                <p style="font-size: 0.95em; margin-bottom: 20px;"><em>(Bu bölüm kritik – sen projeyi yapıyorsun, o içeriğin sahibidir)</em></p>
+                
+                <h3>7.1 Zorunlu Bilgiler</h3>
+                <ul>
+                    <li>Heykelin resmi adı</li>
+                    <li>Heykelin fiziksel konumu (müze / açık alan / şehir)</li>
+                    <li>Heykelin sabit mi geçici mi olduğu</li>
+                    <li>Heykelin fotoğraflanmasına izin durumu</li>
+                </ul>
+
+                <h3>7.2 Akademik / Tez İçeriği (varsa)</h3>
+                <ul>
+                    <li>Sanatçısı</li>
+                    <li>Dönemi</li>
+                    <li>Yaklaşık tarihi</li>
+                    <li>Tezde kullanılacak kısa açıklama metni</li>
+                </ul>
+
+                <h3>7.3 Kullanım & Etik</h3>
+                <ul>
+                    <li>Dijital kopyanın tez kapsamında kullanılmasına izin var mı?</li>
+                    <li>Online erişime açık olmasında sakınca var mı?</li>
+                    <li>"Bu çalışma akademik amaçlıdır" notu gerekli mi?</li>
+                </ul>
+
+                <h3>7.4 Operasyonel</h3>
+                <ul>
+                    <li>Kaideye QR koyma izni</li>
+                    <li>QR'ın geçici mi kalıcı mı olacağı</li>
+                    <li>Kaç heykel ile başlanacağı (pilot sayı)</li>
+                </ul>
+
+                <div style="background: rgba(245, 1, 1, 0.9); padding: 20px; border-radius: 10px; margin-top: 20px; color: #333;">
+                    <p><strong>📌 Önemli:</strong> Hazal'dan teknik hiçbir şey istemiyorsun. Onun rolü: içerik + izin + bağlam.</p>
+                </div>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2><span class="icon">🎯</span> 8. Projenin Net Çerçevesi (Özet)</h2>
+                <div class="summary-box">
+                    <ul>
+                        <li>AR birincil deneyim</li>
+                        <li>Web 3D ikincil destek</li>
+                        <li>Tek QR, tek link</li>
+                        <li>iOS & Android unified</li>
+                        <li>Kod bilgisi gerektirmeyen ölçeklenebilir yapı</li>
+                        <li>Tez için güçlü ama sade teknoloji kullanımı</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🚀 Hazır Başlamaya!</h3>
+            <p>Bu proje Hazal'in doktora tezini görsel ve interaktif bir deneyime dönüştürecek.</p>
+            <p style="margin-top: 15px; font-size: 1.1em;">Başarılar dileriz! 🎓✨</p>
+        </div>
+    </div>
+</body>
+</html>
