@@ -2,16 +2,6 @@
   "buildCommand": "pnpm build",
   "outputDirectory": "dist/public",
   "framework": "vite",
-  "env": {
-    "VITE_ANALYTICS_ENDPOINT": "@analytics_endpoint",
-    "VITE_ANALYTICS_WEBSITE_ID": "@analytics_website_id",
-    "VITE_APP_ID": "@app_id",
-    "VITE_APP_LOGO": "@app_logo",
-    "VITE_APP_TITLE": "@app_title",
-    "VITE_FRONTEND_FORGE_API_KEY": "@frontend_forge_api_key",
-    "VITE_FRONTEND_FORGE_API_URL": "@frontend_forge_api_url",
-    "VITE_OAUTH_PORTAL_URL": "@oauth_portal_url"
-  },
   "rewrites": [
     {
       "source": "/(.*)",
