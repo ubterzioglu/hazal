@@ -1,7 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Loader2, BookOpen, Zap, Volume2, Info } from "lucide-react";
-import { useState, useRef } from "react";
+import { Loader2, BookOpen, Zap, Volume2, Info, Camera } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'model-viewer': any;
+    }
+  }
+}
 
 /**
  * Maussollos AR Experience
@@ -18,6 +26,14 @@ export default function Home() {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [showInfo, setShowInfo] = useState(true);
+
+  useEffect(() => {
+    // Load Model Viewer script for AR support
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
+    document.head.appendChild(script);
+  }, []);
 
   const handlePlayAudio = () => {
     if (audioRef.current) {
@@ -59,7 +75,7 @@ export default function Home() {
           <div className="lg:col-span-2">
             <Card className="overflow-hidden shadow-lg border-0 bg-white">
               <div className="aspect-video bg-gradient-to-br from-slate-900 to-slate-800 relative">
-                {/* Sketchfab Embed */}
+                {/* Sketchfab Embed with AR Support */}
                 <iframe
                   title="Maussollos Statue 3D Model"
                   frameBorder="0"
@@ -77,6 +93,22 @@ export default function Home() {
                   Halikarnassos Mausolesi'nden mermer heykel, British Museum'da sergilenmektedir
                 </p>
                 
+                {/* AR Button */}
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4 mb-4 border border-blue-200/50">
+                  <Button
+                    onClick={() => {
+                      const modelViewer = document.querySelector('model-viewer') as any;
+                      if (modelViewer && modelViewer.activateAR) {
+                        modelViewer.activateAR();
+                      }
+                    }}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white gap-2"
+                  >
+                    <Camera className="w-4 h-4" />
+                    AR'da Gör
+                  </Button>
+                </div>
+
                 {/* Audio Description */}
                 <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 mb-4 border border-amber-200/50">
                   <div className="flex items-center justify-between">
@@ -148,7 +180,7 @@ export default function Home() {
                       Hakkında
                     </h3>
                     <p className="text-sm text-slate-600 leading-relaxed">
-                      Bu devasa mermer heykel, Pers İmparatorluğu'nun bir satrabı olan Maussollos'u temsil eder. Antik Dünyanın Yedi Harikasından biri olan Halikarnassos Mausolesi'nde keşfedilmiştir.
+                      Maussollos, Halikarnassos'un satrapı (vali) olup, Halikarnassos Mausolesi'nin kurucusudur. Bu heykel, antik dünyanın en ünlü yapılarından birinin bir parçasıdır.
                     </p>
                   </div>
 
@@ -156,89 +188,50 @@ export default function Home() {
                     <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-2">
                       Özellikler
                     </h3>
-                    <ul className="space-y-2 text-sm text-slate-600">
+                    <ul className="text-sm text-slate-600 space-y-2">
                       <li className="flex gap-2">
                         <span className="text-amber-600">•</span>
-                        <span>Akan saçlar ve kısa kıvırcık sakal</span>
+                        <span>Mermer yapılı, klasik Yunan sanatının başyapıtı</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-amber-600">•</span>
-                        <span>Uzun chiton ve himation kumaş drape</span>
+                        <span>3 metre yüksekliğinde, detaylı işçiliği ile ünlü</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-amber-600">•</span>
-                        <span>Elinde kılıç kınını tutuyor</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-amber-600">•</span>
-                        <span>Bağlı metal çerçeveli sandalet</span>
+                        <span>M.Ö. 350 yıllarında yapılmış</span>
                       </li>
                     </ul>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-2">
-                      Kazı
+                      Kazı Tarihi
                     </h3>
                     <p className="text-sm text-slate-600 leading-relaxed">
-                      1857 yılında Sir Charles Thomas Newton tarafından kazılmıştır. Şu anda British Museum'un Yunan ve Roma Departmanı'nda (Galeri G21) sergilenmektedir.
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-200">
-                    <p className="text-xs text-slate-500 text-center">
-                      Müze Numarası: 1857,1220.232
+                      Heykel, 19. yüzyılda Bodrum'da yapılan kazılar sırasında bulunmuş ve British Museum'a getirilmiştir. Müze numarası: G 1857-1220-232
                     </p>
                   </div>
                 </Card>
               )}
 
-              {/* QR Kod Bölümü */}
-              <Card className="p-6 border-0 shadow-lg bg-gradient-to-br from-slate-50 to-slate-100 text-center">
+              {/* Methodology Link */}
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-2 border-slate-200 hover:bg-slate-50"
+                onClick={() => window.location.href = '/metodoloji'}
+              >
+                <BookOpen className="w-4 h-4" />
+                Metodoloji
+              </Button>
+
+              {/* QR Code */}
+              <Card className="p-4 border-0 shadow-lg bg-white">
                 <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">
                   Deneyimi Paylaş
                 </p>
-                <div className="bg-white rounded-lg p-4 mb-4 inline-block border border-slate-200">
-                  <img src="/qr-code.png" alt="QR Kod" className="w-40 h-40" />
-                </div>
-                <p className="text-xs text-slate-600">
-                  Mobil cihazınızda bu AR deneyimini görmek için tarayın
-                </p>
+                <img src="/qr-code.png" alt="QR Code" className="w-full rounded-lg" />
               </Card>
-            </div>
-          </div>
-        </div>
-
-        {/* Metodoloji Linki */}
-        <div className="mt-12 pt-8 border-t border-slate-200/50 mb-8">
-          <div className="flex justify-center">
-            <a
-              href="/metodoloji"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 transition-colors border border-amber-200 font-semibold"
-            >
-              <BookOpen className="w-5 h-5" />
-              Metodoloji - Nasıl Yapıldığını Öğren
-            </a>
-          </div>
-        </div>
-
-      {/* Alt Bilgi */}
-        <div className="mt-12 pt-8 border-t border-slate-200/50">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-2">Müze</h4>
-              <p className="text-sm text-slate-600">British Museum, Londra</p>
-              <p className="text-xs text-slate-500 mt-1">Yunan ve Roma Departmanı</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-2">Dönem</h4>
-              <p className="text-sm text-slate-600">Klasik Yunan</p>
-              <p className="text-xs text-slate-500 mt-1">Yaklaşık M.Ö. 350</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-2">Konum</h4>
-              <p className="text-sm text-slate-600">Halikarnassos Mausolesi</p>
-              <p className="text-xs text-slate-500 mt-1">Bodrum, Türkiye</p>
             </div>
           </div>
         </div>
