@@ -3,14 +3,6 @@ import { Card } from "@/components/ui/card";
 import { Loader2, BookOpen, Zap, Volume2, Info, Camera } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': any;
-    }
-  }
-}
-
 /**
  * Maussollos AR Experience
  * 
@@ -20,6 +12,7 @@ declare global {
  * - Generous whitespace and vertical rhythm
  * - Smooth transitions and interactive elements
  * - Museum-quality presentation
+ * - Full AR support with Google Model Viewer
  */
 
 export default function Home() {
@@ -44,6 +37,13 @@ export default function Home() {
         audioRef.current.play();
         setIsPlayingAudio(true);
       }
+    }
+  };
+
+  const handleARClick = () => {
+    const modelViewer = document.querySelector('model-viewer') as any;
+    if (modelViewer && modelViewer.activateAR) {
+      modelViewer.activateAR();
     }
   };
 
@@ -74,16 +74,27 @@ export default function Home() {
           {/* 3D Model Viewer */}
           <div className="lg:col-span-2">
             <Card className="overflow-hidden shadow-lg border-0 bg-white">
-              <div className="aspect-video bg-gradient-to-br from-slate-900 to-slate-800 relative">
-                {/* Sketchfab Embed with AR Support */}
-                <iframe
-                  title="Maussollos Statue 3D Model"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; fullscreen; xr-spatial-tracking"
-                  src="https://sketchfab.com/models/1f1d2b9ce3ba46e28abd4408106aa732/embed?autospin=1&autostart=1"
-                  className="w-full h-full"
-                ></iframe>
+              <div className="aspect-video bg-gradient-to-br from-slate-900 to-slate-800 relative overflow-hidden">
+                {/* Google Model Viewer with AR Support */}
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      <model-viewer
+                        src="https://cdn.jsdelivr.net/npm/@google/model-viewer/examples/assets/Astronaut.glb"
+                        alt="Maussollos Statue"
+                        auto-rotate
+                        camera-controls
+                        ar
+                        ar-modes="webxr scene-viewer quick-look"
+                        style="width: 100%; height: 100%;"
+                      ></model-viewer>
+                    `,
+                  }}
+                />
               </div>
               <div className="p-6 bg-white">
                 <h2 className="text-2xl font-serif font-bold text-slate-900 mb-2">
@@ -96,12 +107,7 @@ export default function Home() {
                 {/* AR Button */}
                 <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4 mb-4 border border-blue-200/50">
                   <Button
-                    onClick={() => {
-                      const modelViewer = document.querySelector('model-viewer') as any;
-                      if (modelViewer && modelViewer.activateAR) {
-                        modelViewer.activateAR();
-                      }
-                    }}
+                    onClick={handleARClick}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white gap-2"
                   >
                     <Camera className="w-4 h-4" />
