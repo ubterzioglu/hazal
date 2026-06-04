@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Tabanlı AR Heykel Deneyimi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .title-section {
+            background: #000000;
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .title-section h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 40px;
+            color: white;
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .header-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .header-left img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+            max-height: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .header h1 {
+            font-size: 1.1em;
+            margin-bottom: 0;
+            text-shadow: none;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 0;
+            line-height: 1.3;
+        }
+
+        .header .message {
+            font-size: 1.1em;
+            line-height: 1.3;
+            margin-top: 0;
+            font-weight: 400;
+        }
+
+        .header .message strong {
+            font-size: 1.1em;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 0;
+        }
+
+        .header .message em {
+            display: block;
+            margin-top: 0;
+            font-style: italic;
+            opacity: 0.95;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 32px;
+            border-radius: 14px;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.1em;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .btn-ar {
+            background: linear-gradient(135deg, #f7931e 0%, #f37000 100%);
+        }
+
+        .btn-ar:hover {
+            background: linear-gradient(135deg, #f37000 0%, #e05a00 100%);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-info:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #6a3d91 100%);
+        }
+
+        .btn-placeholder {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .btn-placeholder:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+            }
+
+            .header-left {
+                min-height: 250px;
+            }
+
+            .header-right {
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 1em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .header .message {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 40px 20px;
+            }
+
+            .btn {
+                padding: 16px 24px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-section">
+            <h1>Doktor Hazal Turgut Oral</h1>
+        </div>
+
+        <div class="header">
+            <div class="header-left">
+                <img src="hazal.jpg" alt="Hazal">
+            </div>
+
+            <div class="header-right">
+                <h1>QR Tabanlı Artırılmış Gerçeklik</h1>
+                <p>Heykel Deneyimi</p>
+                <p style="margin-top: 8px;">Hazal'in Doktora Tezi için Hazırlandı</p>
+                
+                <div class="message" style="margin-top: 15px;">
+                    <strong>Doktora tezin için gerekli çalışma tamamlandı!</strong>
+                    <strong>Hayırlı olsun baldızko!</strong>
+                    <strong>1. butonda çalışmayı bulabilirsin</strong>
+                    <strong>2. butonda hazırlık sürecini bulabilirsin</strong>
+                    <strong>3. butonda istediğin gibi doktora tarzında metodoloji bilgisi bulabilirsin</strong>
+                    <em>İkinizi de öpüyorum Can'a selam! Muck muck!</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="buttons-container">
+                <a href="https://hazal.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-ar">
+                    AR Deneyimini Aç
+                </a>
+
+                <a href="https://hazal.vercel.app/information.html" target="_blank" rel="noopener noreferrer" class="btn btn-info">
+                    Proje Bilgisi
+                </a>
+
+                <a href="https://hazal.vercel.app/metodoloji" target="_blank" rel="noopener noreferrer" class="btn btn-placeholder">
+                    Metodoloji
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
