@@ -17,6 +17,10 @@ build/
 # IDE and editor files
 .vscode/
 .idea/
+
+# Agent/workspace state
+.omc/
+.claude/
 *.swp
 *.swo
 *~

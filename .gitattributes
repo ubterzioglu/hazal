@@ -1,0 +1,8 @@
+# Keep LF for files where line endings are semantically significant.
+# pnpm computes a content hash of patch files and the lockfile; CRLF conversion
+# would change that hash and break `pnpm install --frozen-lockfile`.
+patches/** -text
+*.patch -text
+pnpm-lock.yaml -text
+Dockerfile text eol=lf
+*.sh text eol=lf

@@ -1,0 +1,42 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies & build artifacts (rebuilt inside the image)
+**/node_modules
+.pnpm-store
+dist
+build
+*.dist
+
+# Env files — pass secrets via Coolify env vars, never bake them in
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs
+npm-debug.log*
+pnpm-debug.log*
+
+# Docs & deploy configs not needed at runtime
+README.md
+USER_GUIDE.md
+DEVELOPER_QUICKSTART.md
+vercel.json
+.vercelignore
+
+# OMC workspace state
+.omc
+
+# Standalone landing-page folder (not part of the app build)
+ho
