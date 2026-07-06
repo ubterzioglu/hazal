@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { BookOpen, Microscope, Zap, QrCode, Volume2, Smartphone } from "lucide-react";
 
 /**
@@ -13,6 +14,12 @@ import { BookOpen, Microscope, Zap, QrCode, Volume2, Smartphone } from "lucide-r
  */
 
 export default function Methodology() {
+  useDocumentMeta({
+    title: "Metodoloji | Maussollos AR Deneyimi Oluşturma Süreci",
+    description: "Maussollos heykeli için British Museum'da sergilenen QR kod tabanlı artırılmış gerçeklik (AR) web deneyiminin nasıl geliştirildiği: veri toplama, 3D modelleme, sesli tasvir ve dağıtım aşamaları.",
+    path: "/metodoloji",
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Header */}

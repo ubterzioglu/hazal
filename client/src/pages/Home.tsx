@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Loader2, BookOpen, Zap, Volume2, Info } from "lucide-react";
 import { useState, useRef } from "react";
 
@@ -18,6 +19,12 @@ export default function Home() {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [showInfo, setShowInfo] = useState(true);
+
+  useDocumentMeta({
+    title: "Maussollos Heykeli AR Deneyimi | British Museum - Halikarnassos Mausolesi",
+    description: "Halikarnassos Mausolesi'nden Maussollos heykelini British Museum koleksiyonundan artırılmış gerçeklik (AR) ile tarayıcınızda 3 boyutlu keşfedin. Klasik Yunan sanatı, M.Ö. 350, sesli tasvir ve interaktif 3D model.",
+    path: "/",
+  });
 
   const handlePlayAudio = () => {
     if (audioRef.current) {
