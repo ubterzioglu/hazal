@@ -248,16 +248,6 @@ export default function Home() {
               <p className="text-xs text-slate-500 mt-1">Bodrum, Türkiye</p>
             </div>
           </div>
-          <p className="mt-8 text-center text-sm text-slate-500">
-            <a
-              href="https://ufuksoynakliyat.com.tr/kartal-evden-eve-nakliyat"
-              rel="dofollow"
-              className="font-medium text-slate-600 transition-colors hover:text-amber-700"
-            >
-              Kartal Evden Eve Nakliyat
-            </a>{" "}
-            Firması Ufuksoy Nakliyat A.Ş
-          </p>
         </div>
       </main>
     </div>
