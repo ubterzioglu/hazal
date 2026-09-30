@@ -5,7 +5,7 @@
   "redirects": [
     {
       "source": "/qr",
-      "destination": "/",
+      "destination": "/ar",
       "permanent": false
     }
   ],

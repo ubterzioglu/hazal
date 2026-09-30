@@ -9,4 +9,4 @@
 export const QR_PATH = "/qr";
 
 /** Where /qr currently sends visitors. Safe to change at any time. */
-export const QR_TARGET = "/";
+export const QR_TARGET = "/ar";

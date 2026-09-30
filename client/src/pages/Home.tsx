@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
-import { Loader2, BookOpen, Zap, Volume2, Info } from "lucide-react";
+import { Loader2, BookOpen, Zap, Volume2, Info, Smartphone } from "lucide-react";
 import { useState, useRef } from "react";
+import { Link } from "wouter";
 
 /**
  * Maussollos AR Experience
@@ -83,6 +84,15 @@ export default function Home() {
                 <p className="text-sm text-slate-600 mb-4">
                   Halikarnassos Mausolesi'nden mermer heykel, British Museum'da sergilenmektedir
                 </p>
+
+                {/* AR deneyimine giriş — QR kodu da buraya (/qr -> /ar) düşer */}
+                <Link
+                  href="/ar"
+                  className="mb-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-amber-700"
+                >
+                  <Smartphone className="h-5 w-5" />
+                  AR'da Gör — Odana Yerleştir
+                </Link>
                 
                 {/* Audio Description */}
                 <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 mb-4 border border-amber-200/50">
