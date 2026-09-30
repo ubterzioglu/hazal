@@ -4,10 +4,11 @@ QR kod tabanlı Artırılmış Gerçeklik (AR) web uygulaması. British Museum'd
 
 ## ✨ Özellikler
 
+- **AR Görünümü** (`/ar`): Heykeli bulunduğunuz odanın zeminine gerçek boyutta yerleştirir (Android: WebXR/Scene Viewer, iOS: AR Quick Look)
 - **3D Model Viewer**: Sketchfab entegrasyonu ile dönen 3D heykel modeli
 - **Sesli Tasvir**: Profesyonel sesli açıklama (İngilizce, ~2 dakika)
 - **Heykel Bilgileri**: Detaylı müze bilgileri ve sanatsal açıklamalar
-- **QR Kod**: Mobil cihazlarda kolay erişim için taranabilir QR kod
+- **Kalıcı QR Kod**: Basılı kod sabit `hazaloral.site/qr` adresini kodlar; sunucu bunu güncel deneyime yönlendirir, böylece kod hiç yeniden basılmaz
 - **Responsive Tasarım**: Mobil, tablet ve masaüstü cihazlarda optimize edilmiş
 - **Klasik Tasarım**: Müze kalitesi sunum, serif fontlar ve amber aksan renkleri
 
@@ -40,10 +41,21 @@ pnpm start
 
 ## 📱 Kullanım
 
-1. **QR Kod Tarama**: Uygulamadaki QR kodu mobil cihazla tarayın
-2. **3D Model Görüntüleme**: Modeli sürükleyerek döndürün, yakınlaştırın
-3. **Sesli Tasvir**: Play butonuna tıklayarak sesli açıklamayı dinleyin
-4. **Bilgi Okuma**: Sağ panelde heykel hakkında detaylı bilgileri okuyun
+1. **QR Kod Tarama**: Kodu mobil cihazla tarayın → `/qr` → AR görünümü (`/ar`) açılır
+2. **AR'a Geçiş**: "Odana Yerleştir" ile heykeli zemine yerleştirin; "i" butonu ana siteye götürür
+3. **3D Model Görüntüleme**: Ana sayfada modeli sürükleyerek döndürün, yakınlaştırın
+4. **Sesli Tasvir**: Play butonuna tıklayarak sesli açıklamayı dinleyin
+5. **Bilgi Okuma**: "Detayları Göster" ile künye ve müze bilgilerini okuyun
+
+### QR kodunu yeniden üretme
+
+```bash
+pnpm qr:generate   # PNG + SVG üretir, decode ederek doğrular
+```
+
+> Kodun içeriği (`https://hazaloral.site/qr`) **asla değiştirilmemelidir**.
+> Deneyimin yerini değiştirmek için `shared/qr.ts` içindeki `QR_TARGET` sabitini
+> güncellemek yeterlidir.
 
 ## 📚 Dokümantasyon
 

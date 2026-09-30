@@ -228,9 +228,11 @@ export default function Methodology() {
                       <div>
                         <p className="font-semibold text-slate-900 mb-2">3D ve Medya:</p>
                         <ul className="space-y-1 text-slate-700 text-sm">
-                          <li>• Sketchfab Embed (3D model)</li>
+                          <li>• &lt;model-viewer&gt; (3D ve AR görüntüleyici)</li>
+                          <li>• WebXR / Scene Viewer (Android AR)</li>
+                          <li>• AR Quick Look (iOS AR)</li>
+                          <li>• Sketchfab Embed (yedek 3D görüntüleyici)</li>
                           <li>• HTML5 Audio API (sesli tasvir)</li>
-                          <li>• Canvas API (grafik işleme)</li>
                           <li>• WebGL (3D rendering)</li>
                         </ul>
                       </div>
@@ -245,7 +247,11 @@ export default function Methodology() {
                     <ul className="space-y-2 text-slate-700">
                       <li className="flex gap-2">
                         <span className="text-amber-600">→</span>
-                        <span><strong>3D Model Viewer:</strong> Sketchfab iframe embed'i ile dönen 3D model gösterimi</span>
+                        <span><strong>3D Model Viewer:</strong> Ana sayfada Sketchfab iframe embed'i ile dönen 3D model gösterimi</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-amber-600">→</span>
+                        <span><strong>AR Görünümü (/ar):</strong> &lt;model-viewer&gt; ile heykeli gerçek mekâna, zemine yerleştirme. Android'de WebXR veya Scene Viewer, iOS'ta AR Quick Look kullanılır. QR kod doğrudan buraya düşer.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-amber-600">→</span>
@@ -257,7 +263,7 @@ export default function Methodology() {
                       </li>
                       <li className="flex gap-2">
                         <span className="text-amber-600">→</span>
-                        <span><strong>Museum Info Section:</strong> Müze, dönem ve konum bilgileri</span>
+                        <span><strong>Künye Bilgileri:</strong> Müze, dönem ve konum bilgileri detay kartı içinde</span>
                       </li>
                     </ul>
                   </div>
@@ -383,23 +389,29 @@ export default function Methodology() {
                   <div className="bg-slate-50 rounded-lg p-4 border border-slate-200 space-y-3">
                     <p className="text-slate-700 font-semibold">Adımlar:</p>
                     <ol className="space-y-2 text-slate-700 ml-4">
-                      <li><strong>1. URL Belirleme:</strong> Uygulamanın web adresi (https://3000-iu5gjwt2uk0jpri0ib8ut-c9e898e4.us2.manus.computer)</li>
-                      <li><strong>2. QR Kod Kütüphanesi Kullanma:</strong> Python qrcode kütüphanesi</li>
-                      <li><strong>3. Kod Oluşturma:</strong> URL'den QR kod görüntüsü üretilir</li>
-                      <li><strong>4. Görüntü Dışa Aktarma:</strong> PNG formatında kaydedilir</li>
-                      <li><strong>5. Web Uygulamasına Ekleme:</strong> Arayüzde gösterilir</li>
+                      <li><strong>1. Kalıcı Adres Belirleme:</strong> Kod, deneyimin adresini değil sabit bir giriş noktasını kodlar: https://hazaloral.site/qr</li>
+                      <li><strong>2. QR Kod Kütüphanesi Kullanma:</strong> Node.js qrcode kütüphanesi (<code>pnpm qr:generate</code>)</li>
+                      <li><strong>3. Kod Oluşturma:</strong> PNG (ekran) ve SVG (baskı) çıktıları üretilir</li>
+                      <li><strong>4. Doğrulama:</strong> Üretilen görsel jsQR ile tekrar okunur; içerik beklenenden farklıysa süreç hata verir</li>
+                      <li><strong>5. Yönlendirme:</strong> Sunucu /qr adresini 302 ile güncel deneyime (/ar) yönlendirir</li>
                     </ol>
+                    <p className="text-slate-700 mt-3">
+                      <strong>Neden böyle?</strong> Müze etiketine basılmış bir kod geri alınamaz.
+                      Kod doğrudan sayfa adresini içerirse, adres değiştiğinde kod ölür — bu proje
+                      bunu bir kez yaşadı. Sabit bir giriş noktası + sunucu yönlendirmesi sayesinde
+                      deneyimin yeri değişse bile basılı kod çalışmaya devam eder.
+                    </p>
                   </div>
                 </div>
 
                 <div>
                   <h4 className="text-lg font-semibold text-slate-900 mb-3">5.3 QR Kod Teknik Özellikleri</h4>
                   <div className="bg-slate-50 rounded-lg p-4 border border-slate-200 space-y-2">
-                    <p className="text-slate-700"><strong>Versiyon:</strong> Version 1 (21x21 modül)</p>
-                    <p className="text-slate-700"><strong>Hata Düzeltme Seviyesi:</strong> L (Düşük, ~7% hata toleransı)</p>
-                    <p className="text-slate-700"><strong>Kutu Boyutu:</strong> 10 piksel</p>
-                    <p className="text-slate-700"><strong>Sınır:</strong> 4 modül</p>
-                    <p className="text-slate-700"><strong>Dosya Formatı:</strong> PNG (256x256 piksel)</p>
+                    <p className="text-slate-700"><strong>Kodlanan Veri:</strong> https://hazaloral.site/qr (kalıcı giriş noktası)</p>
+                    <p className="text-slate-700"><strong>Hata Düzeltme Seviyesi:</strong> H (Yüksek, ~30% hasar toleransı — baskı yıpranmasına ve parlamaya dayanıklı)</p>
+                    <p className="text-slate-700"><strong>Sınır:</strong> 2 modül</p>
+                    <p className="text-slate-700"><strong>Dosya Formatları:</strong> PNG (1024x1024 piksel) ve SVG (vektör, baskı için)</p>
+                    <p className="text-slate-700"><strong>Yönlendirme:</strong> HTTP 302 (geçici) — 301 tarayıcıda kalıcı önbelleğe alınır ve hedefi bir daha değiştirmeyi imkânsız kılar</p>
                   </div>
                 </div>
 

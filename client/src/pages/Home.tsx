@@ -116,6 +116,8 @@ export default function Home() {
                     onEnded={() => setIsPlayingAudio(false)}
                     className="hidden"
                   >
+                    {/* mp3 first: a quarter of the wav's size on museum mobile data */}
+                    <source src="/audio/maussollos-description.mp3" type="audio/mpeg" />
                     <source src="/audio/maussollos-description.wav" type="audio/wav" />
                   </audio>
                 </div>

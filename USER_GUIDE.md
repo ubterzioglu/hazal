@@ -3,17 +3,15 @@
 ## 📱 Uygulamayı Açma
 
 ### Seçenek 1: QR Kod ile (En Kolay)
-1. Uygulamanın QR kodunu tarayın (sağ panelde "SHARE THIS EXPERIENCE" bölümünde)
-2. Tarayıcı otomatik olarak uygulamayı açacaktır
-3. Mobil cihazınızda tam ekran deneyimi başlayacaktır
+1. QR kodunu mobil cihazınızla tarayın (müze etiketinde veya ana sayfadaki "Deneyimi Paylaş" kartında)
+2. Kod `hazaloral.site/qr` adresini açar, sunucu sizi AR görünümüne yönlendirir
+3. "Odana Yerleştir" butonuna dokunun; heykel bulunduğunuz mekânın zeminine yerleşir
+4. Sağ üstteki "i" butonu heykelin bilgi sayfasına götürür
 
 ### Seçenek 2: Doğrudan URL ile
-- **Geliştirme Sunucusu**: https://3000-iu5gjwt2uk0jpri0ib8ut-c9e898e4.us2.manus.computer
-- Tarayıcıya URL'yi yapıştırıp Enter tuşuna basın
-
-### Seçenek 3: Yayınlanan Sürüm (Üretim)
-- Manus Management UI'da "Publish" butonuna tıklayın
-- Yayınlanan URL'yi kullanıcılarla paylaşın
+- **AR görünümü**: https://hazaloral.site/ar
+- **Bilgi sayfası**: https://hazaloral.site/
+- **Metodoloji**: https://hazaloral.site/metodoloji
 
 ---
 

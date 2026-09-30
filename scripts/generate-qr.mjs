@@ -21,6 +21,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const QR_PAYLOAD = "https://hazaloral.site/qr";
 export const QR_PNG_PATH = path.resolve(__dirname, "..", "client", "public", "qr-code.png");
+/** Vector copy for museum labels and posters — a scaled-up PNG looks blurry in print. */
+export const QR_SVG_PATH = path.resolve(__dirname, "..", "client", "public", "qr-code.svg");
 
 /** Decodes a QR PNG from disk and returns the embedded text. */
 export function decodeQrPng(pngPath) {
@@ -43,6 +45,14 @@ async function generate() {
     color: { dark: "#0f172aff", light: "#ffffffff" },
   });
   console.log(`Wrote ${QR_PNG_PATH}`);
+
+  await QRCode.toFile(QR_SVG_PATH, QR_PAYLOAD, {
+    errorCorrectionLevel: "H",
+    type: "svg",
+    margin: 2,
+    color: { dark: "#0f172aff", light: "#ffffffff" },
+  });
+  console.log(`Wrote ${QR_SVG_PATH}`);
 }
 
 function verify() {
