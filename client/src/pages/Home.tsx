@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { artifact } from "@/content/artifact";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Loader2, BookOpen, Zap, Volume2, Info, Smartphone } from "lucide-react";
 import { useState, useRef } from "react";
@@ -79,11 +80,9 @@ export default function Home() {
               </div>
               <div className="p-6 bg-white">
                 <h2 className="text-2xl font-serif font-bold text-slate-900 mb-2">
-                  Maussollos Heykeli
+                  {artifact.title}
                 </h2>
-                <p className="text-sm text-slate-600 mb-4">
-                  Halikarnassos Mausolesi'nden mermer heykel, British Museum'da sergilenmektedir
-                </p>
+                <p className="text-sm text-slate-600 mb-4">{artifact.subtitle}</p>
 
                 {/* AR deneyimine giriş — QR kodu da buraya (/qr -> /ar) düşer */}
                 <Link
@@ -123,22 +122,17 @@ export default function Home() {
 
                 {/* Temel Bilgiler */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
-                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Yükseklik</p>
-                    <p className="text-lg font-bold text-slate-900">3 metre</p>
-                  </div>
-                  <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
-                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Malzeme</p>
-                    <p className="text-lg font-bold text-slate-900">Mermer</p>
-                  </div>
-                  <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
-                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Dönem</p>
-                    <p className="text-lg font-bold text-slate-900">M.Ö. 350</p>
-                  </div>
-                  <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
-                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Orijin</p>
-                    <p className="text-lg font-bold text-slate-900">Halikarnassos</p>
-                  </div>
+                  {artifact.facts.map((fact) => (
+                    <div
+                      key={fact.label}
+                      className="bg-slate-50 rounded-lg p-3 border border-slate-200"
+                    >
+                      <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                        {fact.label}
+                      </p>
+                      <p className="text-lg font-bold text-slate-900">{fact.value}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Card>
@@ -165,7 +159,7 @@ export default function Home() {
                       Hakkında
                     </h3>
                     <p className="text-sm text-slate-600 leading-relaxed">
-                      Bu devasa mermer heykel, Pers İmparatorluğu'nun bir satrabı olan Maussollos'u temsil eder. Antik Dünyanın Yedi Harikasından biri olan Halikarnassos Mausolesi'nde keşfedilmiştir.
+                      {artifact.details.about}
                     </p>
                   </div>
 
@@ -174,22 +168,12 @@ export default function Home() {
                       Özellikler
                     </h3>
                     <ul className="space-y-2 text-sm text-slate-600">
-                      <li className="flex gap-2">
-                        <span className="text-amber-600">•</span>
-                        <span>Akan saçlar ve kısa kıvırcık sakal</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-amber-600">•</span>
-                        <span>Uzun chiton ve himation kumaş drape</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-amber-600">•</span>
-                        <span>Elinde kılıç kınını tutuyor</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-amber-600">•</span>
-                        <span>Bağlı metal çerçeveli sandalet</span>
-                      </li>
+                      {artifact.details.features.map((feature) => (
+                        <li key={feature} className="flex gap-2">
+                          <span className="text-amber-600">•</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
 
@@ -198,13 +182,25 @@ export default function Home() {
                       Kazı
                     </h3>
                     <p className="text-sm text-slate-600 leading-relaxed">
-                      1857 yılında Sir Charles Thomas Newton tarafından kazılmıştır. Şu anda British Museum'un Yunan ve Roma Departmanı'nda (Galeri G21) sergilenmektedir.
+                      {artifact.details.excavation}
                     </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-200 space-y-4">
+                    {artifact.details.provenance.map((entry) => (
+                      <div key={entry.label}>
+                        <h4 className="text-sm font-semibold text-slate-900 mb-1">
+                          {entry.label}
+                        </h4>
+                        <p className="text-sm text-slate-600">{entry.value}</p>
+                        <p className="text-xs text-slate-500 mt-1">{entry.note}</p>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="pt-4 border-t border-slate-200">
                     <p className="text-xs text-slate-500 text-center">
-                      Müze Numarası: 1857,1220.232
+                      Müze Numarası: {artifact.details.museumNumber}
                     </p>
                   </div>
                 </Card>
@@ -236,27 +232,6 @@ export default function Home() {
               <BookOpen className="w-5 h-5" />
               Metodoloji - Nasıl Yapıldığını Öğren
             </a>
-          </div>
-        </div>
-
-      {/* Alt Bilgi */}
-        <div className="mt-12 pt-8 border-t border-slate-200/50">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-2">Müze</h4>
-              <p className="text-sm text-slate-600">British Museum, Londra</p>
-              <p className="text-xs text-slate-500 mt-1">Yunan ve Roma Departmanı</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-2">Dönem</h4>
-              <p className="text-sm text-slate-600">Klasik Yunan</p>
-              <p className="text-xs text-slate-500 mt-1">Yaklaşık M.Ö. 350</p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-2">Konum</h4>
-              <p className="text-sm text-slate-600">Halikarnassos Mausolesi</p>
-              <p className="text-xs text-slate-500 mt-1">Bodrum, Türkiye</p>
-            </div>
           </div>
         </div>
       </main>
