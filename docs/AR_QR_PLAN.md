@@ -1,5 +1,15 @@
 # Maussollos AR — Kalıcı QR + Gerçek AR + İçerik Düzeni (Batch Planı)
 
+## Durum (2026-09-30)
+
+| Batch | Durum | Commit |
+|---|---|---|
+| 1 — Kalıcı QR katmanı | ✅ tamam | `ef16706` |
+| 2 — `/ar` sayfası ve AR motoru | ✅ tamam (model bekleniyor, fallback aktif) | `8a786e1` |
+| 3 — 3D model hattı | ⏳ **bloklu**: Sketchfab GLB dosyası bekleniyor | — |
+| 4 — İçerik ve künye düzeni | ✅ tamam | `47b142b` |
+| 5 — Bitirme ve dayanıklılık | 🟡 kısmi: SVG QR, mp3, dokümanlar tamam; USDZ Batch 3'e bağlı | `310b85d` |
+
 ## Context
 
 Bugünkü durum: `client/src/pages/Home.tsx` tek sayfada Sketchfab iframe'i (model `1f1d2b9ce3ba46e28abd4408106aa732`), sesli tasvir, künye kutuları ve statik bir QR görseli (`client/public/qr-code.png`) gösteriyor. Gerçek AR yok — iframe modeli sadece döndürüyor, heykel kullanıcının odasına yerleşmiyor. Repoda hiçbir 3D/AR kütüphanesi ya da model dosyası yok (`package.json`'da model-viewer/three yok, `.glb/.usdz` yok).
