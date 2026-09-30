@@ -126,15 +126,15 @@ pnpm start
 - **Amaç**: Uygulamaya erişim için QR kod
 - **Yenileme**: URL değişirse yeni QR kod oluşturun:
 ```bash
-python3 << 'EOF'
-import qrcode
-qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
-qr.add_data("https://your-new-url.com")
-qr.make(fit=True)
-img = qr.make_image(fill_color="black", back_color="white")
-img.save("/home/ubuntu/maussollos-ar/client/public/qr-code.png")
-EOF
+pnpm qr:generate   # yeniden üretir ve decode ederek doğrular
+pnpm qr:verify     # sadece doğrular
 ```
+
+> **QR hedefi asla değişmez.** Basılı kod `https://hazaloral.site/qr` adresini
+> kodlar; bu adres sunucuda 302 ile o anki deneyime yönlenir. Deneyimin yerini
+> değiştirmek için `shared/qr.ts` içindeki `QR_TARGET` sabitini ve
+> `vercel.json`'daki `/qr` kuralını güncelle — **QR kodunu yeniden basmaya gerek
+> yoktur.** Ayrıntı: `docs/AR_QR_PLAN.md`.
 
 #### `client/src/index.css`
 - **Amaç**: Global stiller ve tasarım sistemi
@@ -224,7 +224,8 @@ Manus otomatik olarak şu değişkenleri enjekte eder:
 - **Sorun**: QR kod resmi görüntülenmiyor
 - **Çözüm**:
   - `/client/public/qr-code.png` dosyasının mevcut olduğunu kontrol edin
-  - QR kodu yeniden oluşturun (yukarıdaki komutları kullanın)
+  - QR kodu yeniden oluşturun: `pnpm qr:generate`
+  - Kod taranıyor ama sayfa açılmıyorsa: `curl -i https://hazaloral.site/qr` çıktısı `302` ve bir `Location` başlığı döndürmeli
 
 ---
 

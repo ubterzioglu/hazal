@@ -209,7 +209,7 @@ export default function Home() {
                   <img src="/qr-code.png" alt="QR Kod" className="w-40 h-40" />
                 </div>
                 <p className="text-xs text-slate-600">
-                  Mobil cihazınızda bu AR deneyimini görmek için tarayın
+                  Tarayın: AR deneyimi mobil cihazınızda açılır
                 </p>
               </Card>
             </div>

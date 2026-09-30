@@ -113,15 +113,15 @@ cp /path/to/new-audio.wav /home/ubuntu/maussollos-ar/client/public/audio/maussol
 
 ### QR Kod Yenileme
 ```bash
-python3 << 'EOF'
-import qrcode
-qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
-qr.add_data("https://your-new-url.com")
-qr.make(fit=True)
-img = qr.make_image(fill_color="black", back_color="white")
-img.save("/home/ubuntu/maussollos-ar/client/public/qr-code.png")
-EOF
+pnpm qr:generate   # yeniden üretir ve decode ederek doğrular
+pnpm qr:verify     # sadece doğrular
 ```
+
+> **QR hedefi asla değişmez.** Basılı kod `https://hazaloral.site/qr` adresini
+> kodlar; bu adres sunucuda 302 ile o anki deneyime yönlenir. Deneyimin yerini
+> değiştirmek için `shared/qr.ts` içindeki `QR_TARGET` sabitini ve
+> `vercel.json`'daki `/qr` kuralını güncelle — **QR kodunu yeniden basmaya gerek
+> yoktur.** Ayrıntı: `docs/AR_QR_PLAN.md`.
 
 ---
 
