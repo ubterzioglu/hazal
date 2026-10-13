@@ -108,3 +108,8 @@ temp/
 *.db
 *.sqlite
 *.sqlite3
+
+# 3D model working files (the optimized GLB in client/public/models is committed)
+/scratch/
+/greek_artemisia_and_maussollos_statues.glb
+*.usdz

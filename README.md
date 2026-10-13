@@ -66,7 +66,7 @@ pnpm qr:generate   # PNG + SVG üretir, decode ederek doğrular
 
 - **Frontend**: React 19 + TypeScript
 - **Styling**: Tailwind CSS 4 + shadcn/ui
-- **3D Model**: Sketchfab embed
+- **3D/AR**: Google <model-viewer> (WebXR, Scene Viewer, AR Quick Look) + Sketchfab embed (ana sayfa)
 - **Audio**: HTML5 Audio API
 - **Build**: Vite
 - **Hosting**: Manus Platform
@@ -78,6 +78,8 @@ client/
 ├── public/
 │   ├── audio/
 │   │   └── maussollos-description.wav    # Sesli tasvir
+│   ├── models/
+│   │   └── maussollos.glb                # AR modeli (140k ucgen, 4.7 MB)
 │   └── qr-code.png                       # QR kod
 ├── src/
 │   ├── pages/
@@ -115,14 +117,13 @@ client/
 - **Dönem**: Klasik Yunan (350 BC)
 - **Malzeme**: Mermer
 - **Yükseklik**: 3 metre
-- **Orijin**: Halicarnassus Mausolesi
+- **Buluntu Yeri**: Halikarnassos
 - **Konum**: British Museum, Londra
 - **Müze Numarası**: 1857,1220.232
 
 ## 🔄 Sonraki Adımlar
 
 - [ ] Türkçe sesli tasvir ekle
-- [ ] Mobil AR özelliği (Google Model Viewer)
 - [ ] Fotoğraf galerisi
 - [ ] Çok dilli destek
 - [ ] Sosyal paylaşım butonları
@@ -134,7 +135,7 @@ client/
 
 ## 📄 Lisans
 
-CC Attribution (Sketchfab 3D model)
+CC Attribution — 3D model: artfletch, "Greek Artemisia And Maussollos Statues", CC BY 4.0 (Sketchfab)
 
 ---
 

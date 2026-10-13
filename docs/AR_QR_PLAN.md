@@ -5,10 +5,10 @@
 | Batch | Durum | Commit |
 |---|---|---|
 | 1 — Kalıcı QR katmanı | ✅ tamam | `ef16706` |
-| 2 — `/ar` sayfası ve AR motoru | ✅ tamam (model bekleniyor, fallback aktif) | `8a786e1` |
-| 3 — 3D model hattı | ⏳ **bloklu**: Sketchfab GLB dosyası bekleniyor | — |
+| 2 — `/ar` sayfası ve AR motoru | ✅ tamam | `8a786e1` |
+| 3 — 3D model hattı | ✅ tamam (140k üçgen, 4.7 MB, 3.00 m) | bu commit |
 | 4 — İçerik ve künye düzeni | ✅ tamam | `47b142b` |
-| 5 — Bitirme ve dayanıklılık | 🟡 kısmi: SVG QR, mp3, dokümanlar tamam; USDZ Batch 3'e bağlı | `310b85d` |
+| 5 — Bitirme ve dayanıklılık | ✅ tamam (USDZ gerekirse eklenir — iOS'ta model-viewer otomatik üretiyor) | `310b85d` |
 
 ## Context
 
