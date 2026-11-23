@@ -1,6 +1,7 @@
+import ArGuide from "@/components/ArGuide";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { artifact } from "@/content/artifact";
+import { AR_GUIDE_ID, artifact } from "@/content/artifact";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Loader2, BookOpen, Zap, Volume2, Info, Smartphone } from "lucide-react";
 import { useState, useRef } from "react";
@@ -87,12 +88,18 @@ export default function Home() {
                 {/* AR deneyimine giriş — QR kodu da buraya (/qr -> /ar) düşer */}
                 <Link
                   href="/ar"
-                  className="mb-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-amber-700"
+                  className="mb-2 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-amber-700"
                 >
                   <Smartphone className="h-5 w-5" />
                   AR'da Gör — Odana Yerleştir
                 </Link>
-                
+                <a
+                  href={`#${AR_GUIDE_ID}`}
+                  className="mb-4 block text-center text-sm font-medium text-amber-700 underline-offset-4 hover:underline"
+                >
+                  Nasıl yerleştirilir? Adım adım gör
+                </a>
+
                 {/* Audio Description */}
                 <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 mb-4 border border-amber-200/50">
                   <div className="flex items-center justify-between">
@@ -223,6 +230,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <ArGuide />
 
         {/* Metodoloji Linki */}
         <div className="mt-12 pt-8 border-t border-slate-200/50 mb-8">
