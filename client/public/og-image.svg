@@ -21,14 +21,14 @@
   <rect x="90" y="90" width="72" height="72" rx="16" fill="url(#accent)" />
   <path d="M116 148 L126 108 L136 148 M120 132 L132 132" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 
-  <text x="90" y="260" font-family="Georgia, 'Playfair Display', serif" font-size="76" font-weight="700" fill="#0f172a">Maussollos</text>
+  <text x="90" y="260" font-family="Georgia, 'Playfair Display', serif" font-size="76" font-weight="700" fill="#0f172a">Mausolos</text>
   <text x="90" y="316" font-family="Georgia, 'Playfair Display', serif" font-size="40" font-weight="600" fill="#334155">AR Deneyimi</text>
 
-  <text x="90" y="380" font-family="Arial, sans-serif" font-size="26" fill="#475569">British Museum &#8226; Klasik Yunan &#8226; M.Ö. 350</text>
+  <text x="90" y="380" font-family="Arial, sans-serif" font-size="26" fill="#475569">Bodrum &#8226; Tepecik Mahallesi &#8226; MÖ 350 Civarı</text>
 
   <line x1="90" y1="420" x2="1110" y2="420" stroke="#e2e8f0" stroke-width="2" />
 
-  <text x="90" y="470" font-family="Arial, sans-serif" font-size="24" fill="#64748b">Halikarnassos Mausolesi'nden mermer heykeli, tarayıcı üzerinden</text>
+  <text x="90" y="470" font-family="Arial, sans-serif" font-size="24" fill="#64748b">Bodrum&#8217;un kültürel mirasının eksik parçalarından birini,</text>
   <text x="90" y="502" font-family="Arial, sans-serif" font-size="24" fill="#64748b">3 boyutlu ve artırılmış gerçeklikte keşfedin.</text>
 
   <text x="90" y="565" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#d97706">hazaloral.site</text>

@@ -1,16 +1,19 @@
 import ArGuide from "@/components/ArGuide";
+import ArtifactInfo from "@/components/ArtifactInfo";
+import AudioToggle from "@/components/AudioToggle";
+import StatueViewer from "@/components/StatueViewer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AR_GUIDE_ID, artifact } from "@/content/artifact";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
-import { Loader2, BookOpen, Zap, Volume2, Info, Smartphone } from "lucide-react";
-import { useState, useRef } from "react";
+import { BookOpen, Zap, Volume2, Info, Smartphone } from "lucide-react";
+import { useState } from "react";
 import { Link } from "wouter";
 
 /**
- * Maussollos AR Experience
- * 
- * Design Philosophy: Classical Elegance meets Modern AR
+ * Mausolos AR Experience
+ *
+ * Design Philosophy: Museum Elegance meets Modern AR
  * - Sophisticated typography with serif headers and clean body text
  * - Marble-inspired color palette (warm grays, cream, gold accents)
  * - Generous whitespace and vertical rhythm
@@ -19,27 +22,13 @@ import { Link } from "wouter";
  */
 
 export default function Home() {
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const [showInfo, setShowInfo] = useState(true);
 
   useDocumentMeta({
-    title: "Maussollos Heykeli AR Deneyimi | British Museum - Halikarnassos Mausolesi",
-    description: "Halikarnassos Mausolesi'nden Maussollos heykelini British Museum koleksiyonundan artırılmış gerçeklik (AR) ile tarayıcınızda 3 boyutlu keşfedin. Klasik Yunan sanatı, M.Ö. 350, sesli tasvir ve interaktif 3D model.",
+    title: "Mausolos Heykeli AR Deneyimi | Halikarnassos Mausoleionu",
+    description: "Bodrum'un kültürel mirasının eksik parçalarından biri olan Mausolos heykelini artırılmış gerçeklik (AR) ile 3 boyutlu keşfedin. Halikarnassos Mausoleionu, MÖ 350 Civarı.",
     path: "/",
   });
-
-  const handlePlayAudio = () => {
-    if (audioRef.current) {
-      if (isPlayingAudio) {
-        audioRef.current.pause();
-        setIsPlayingAudio(false);
-      } else {
-        audioRef.current.play();
-        setIsPlayingAudio(true);
-      }
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
@@ -51,13 +40,13 @@ export default function Home() {
               <Zap className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-serif font-bold text-slate-900">Maussollos</h1>
+              <h1 className="text-xl font-serif font-bold text-slate-900">Mausolos</h1>
               <p className="text-xs text-slate-500">AR Deneyimi</p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-sm text-slate-600">British Museum</p>
-            <p className="text-xs text-slate-400">Klasik Yunan • M.Ö. 350</p>
+            <p className="text-sm text-slate-600">Bodrum</p>
+            <p className="text-xs text-slate-400">MÖ 350 Civarı</p>
           </div>
         </div>
       </header>
@@ -68,16 +57,11 @@ export default function Home() {
           {/* 3D Model Viewer */}
           <div className="lg:col-span-2">
             <Card className="overflow-hidden shadow-lg border-0 bg-white">
-              <div className="aspect-video bg-gradient-to-br from-slate-900 to-slate-800 relative">
-                {/* Sketchfab Embed */}
-                <iframe
-                  title="Maussollos Statue 3D Model"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; fullscreen; xr-spatial-tracking"
-                  src="https://sketchfab.com/models/1f1d2b9ce3ba46e28abd4408106aa732/embed?autospin=1&autostart=1"
-                  className="w-full h-full"
-                ></iframe>
+              <div className="aspect-[4/5] sm:aspect-video bg-gradient-to-br from-slate-900 to-slate-800 relative">
+                <StatueViewer />
+                <p className="pointer-events-none absolute bottom-1 left-0 right-0 text-center text-[10px] text-white/60">
+                  3D model: artfletch • CC BY 4.0 • Sketchfab
+                </p>
               </div>
               <div className="p-6 bg-white">
                 <h2 className="text-2xl font-serif font-bold text-slate-900 mb-2">
@@ -101,8 +85,8 @@ export default function Home() {
                 </a>
 
                 {/* Audio Description */}
-                <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 mb-4 border border-amber-200/50">
-                  <div className="flex items-center justify-between">
+                <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 border border-amber-200/50">
+                  <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <Volume2 className="w-5 h-5 text-amber-600" />
                       <div>
@@ -110,38 +94,12 @@ export default function Home() {
                         <p className="text-xs text-slate-600">Heykelin hikayesini dinleyin</p>
                       </div>
                     </div>
-                    <Button
-                      onClick={handlePlayAudio}
-                      size="sm"
-                      className="bg-amber-600 hover:bg-amber-700 text-white"
-                    >
-                      {isPlayingAudio ? "Durdur" : "Oynat"}
-                    </Button>
+                    <AudioToggle
+                      idleLabel="Oynat"
+                      activeLabel="Durdur"
+                      className="inline-flex shrink-0 items-center gap-2 rounded-md bg-amber-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-700"
+                    />
                   </div>
-                  <audio
-                    ref={audioRef}
-                    onEnded={() => setIsPlayingAudio(false)}
-                    className="hidden"
-                  >
-                    {/* mp3 first: a quarter of the wav's size on museum mobile data */}
-                    <source src="/audio/maussollos-description.mp3" type="audio/mpeg" />
-                    <source src="/audio/maussollos-description.wav" type="audio/wav" />
-                  </audio>
-                </div>
-
-                {/* Temel Bilgiler */}
-                <div className="grid grid-cols-2 gap-4">
-                  {artifact.facts.map((fact) => (
-                    <div
-                      key={fact.label}
-                      className="bg-slate-50 rounded-lg p-3 border border-slate-200"
-                    >
-                      <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">
-                        {fact.label}
-                      </p>
-                      <p className="text-lg font-bold text-slate-900">{fact.value}</p>
-                    </div>
-                  ))}
                 </div>
               </div>
             </Card>
@@ -160,58 +118,9 @@ export default function Home() {
                 {showInfo ? "Detayları Gizle" : "Detayları Göster"}
               </Button>
 
-              {/* Detailed Information */}
               {showInfo && (
-                <Card className="p-6 border-0 shadow-lg bg-white space-y-6">
-                  <div>
-                    <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-2">
-                      Hakkında
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {artifact.details.about}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-2">
-                      Özellikler
-                    </h3>
-                    <ul className="space-y-2 text-sm text-slate-600">
-                      {artifact.details.features.map((feature) => (
-                        <li key={feature} className="flex gap-2">
-                          <span className="text-amber-600">•</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wide mb-2">
-                      Kazı
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {artifact.details.excavation}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-200 space-y-4">
-                    {artifact.details.provenance.map((entry) => (
-                      <div key={entry.label}>
-                        <h4 className="text-sm font-semibold text-slate-900 mb-1">
-                          {entry.label}
-                        </h4>
-                        <p className="text-sm text-slate-600">{entry.value}</p>
-                        <p className="text-xs text-slate-500 mt-1">{entry.note}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-200">
-                    <p className="text-xs text-slate-500 text-center">
-                      Müze Numarası: {artifact.details.museumNumber}
-                    </p>
-                  </div>
+                <Card className="p-6 border-0 shadow-lg bg-white">
+                  <ArtifactInfo />
                 </Card>
               )}
 

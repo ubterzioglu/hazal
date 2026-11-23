@@ -113,3 +113,6 @@ temp/
 /scratch/
 /greek_artemisia_and_maussollos_statues.glb
 *.usdz
+
+# Private meeting notes - never publish
+ho/transkript.md

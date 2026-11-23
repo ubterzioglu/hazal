@@ -15,8 +15,8 @@ import { BookOpen, Microscope, Zap, QrCode, Volume2, Smartphone } from "lucide-r
 
 export default function Methodology() {
   useDocumentMeta({
-    title: "Metodoloji | Maussollos AR Deneyimi Oluşturma Süreci",
-    description: "Maussollos heykeli için British Museum'da sergilenen QR kod tabanlı artırılmış gerçeklik (AR) web deneyiminin nasıl geliştirildiği: veri toplama, 3D modelleme, sesli tasvir ve dağıtım aşamaları.",
+    title: "Metodoloji | Mausolos AR Deneyimi Oluşturma Süreci",
+    description: "Mausolos heykeli için British Museum'da sergilenen QR kod tabanlı artırılmış gerçeklik (AR) web deneyiminin nasıl geliştirildiği: veri toplama, 3D modelleme, sesli tasvir ve dağıtım aşamaları.",
     path: "/metodoloji",
   });
 
@@ -42,11 +42,11 @@ export default function Methodology() {
         {/* Giriş */}
         <section className="mb-12">
           <h2 className="text-3xl font-serif font-bold text-slate-900 mb-6">
-            Artırılmış Gerçeklik ile Klasik Yunan Heykeli Deneyiminin Oluşturulması
+            Artırılmış Gerçeklik ile Mausolos Heykeli Deneyiminin Oluşturulması
           </h2>
           <Card className="p-8 border-0 shadow-lg bg-white">
             <p className="text-lg text-slate-700 leading-relaxed mb-4">
-              Bu çalışma, British Museum'da sergilenen Maussollos heykeli için QR kod tabanlı bir Artırılmış Gerçeklik (AR) web deneyiminin geliştirilmesini kapsamaktadır. Proje, dijital arkeoloji, 3D modelleme, web teknolojileri ve kullanıcı deneyimi tasarımının multidisipliner bir kombinasyonudur.
+              Bu çalışma, British Museum'da sergilenen Mausolos heykeli için QR kod tabanlı bir Artırılmış Gerçeklik (AR) web deneyiminin geliştirilmesini kapsamaktadır. Proje, dijital arkeoloji, 3D modelleme, web teknolojileri ve kullanıcı deneyimi tasarımının multidisipliner bir kombinasyonudur.
             </p>
             <p className="text-lg text-slate-700 leading-relaxed">
               Aşağıda, bu deneyimin oluşturulmasında izlenen metodoloji, teknik yaklaşımlar ve uygulama adımları detaylı olarak açıklanmaktadır.
@@ -83,11 +83,11 @@ export default function Methodology() {
                   <h4 className="text-lg font-semibold text-slate-900 mb-3">1.1 Heykel Bilgilerinin Toplanması</h4>
                   <div className="bg-slate-50 rounded-lg p-4 border border-slate-200 space-y-2">
                     <p className="text-slate-700"><strong>Kaynak:</strong> British Museum Koleksiyonu (Nesne No: G_1857-1220-232)</p>
-                    <p className="text-slate-700"><strong>Başlık:</strong> Maussollos Heykeli</p>
-                    <p className="text-slate-700"><strong>Dönem:</strong> Klasik Yunan, M.Ö. 350</p>
+                    <p className="text-slate-700"><strong>Başlık:</strong> Mausolos Heykeli</p>
+                    <p className="text-slate-700"><strong>Yıl:</strong> MÖ 350 Civarı</p>
                     <p className="text-slate-700"><strong>Malzeme:</strong> Mermer</p>
                     <p className="text-slate-700"><strong>Yükseklik:</strong> 3 metre</p>
-                    <p className="text-slate-700"><strong>Orijin:</strong> Halikarnassos Mausolesi</p>
+                    <p className="text-slate-700"><strong>Ait Olduğu Yer:</strong> Bodrum/ Tepecik Mahallesi</p>
                     <p className="text-slate-700"><strong>Kazı Tarihi:</strong> 1857 (Sir Charles Thomas Newton)</p>
                   </div>
                 </div>
@@ -123,8 +123,8 @@ export default function Methodology() {
                 <div>
                   <h4 className="text-lg font-semibold text-slate-900 mb-3">1.3 Akademik Araştırma</h4>
                   <div className="bg-slate-50 rounded-lg p-4 border border-slate-200 space-y-2">
-                    <p className="text-slate-700"><strong>Heykelin Sanatsal Özellikleri:</strong> Klasik Yunan heykeltıraşlığının karakteristik özellikleri</p>
-                    <p className="text-slate-700"><strong>Tarihsel Bağlam:</strong> Pers İmparatorluğu'ndaki Maussollos'un rolü ve Halikarnassos Mausolesi</p>
+                    <p className="text-slate-700"><strong>Heykelin Sanatsal Özellikleri:</strong> Karia Bölgesi’ne ve Anadolu’ya özgü nitelikler</p>
+                    <p className="text-slate-700"><strong>Tarihsel Bağlam:</strong> Pers İmparatorluğu'ndaki Mausolos'un rolü ve Halikarnassos Mausoleionu</p>
                     <p className="text-slate-700"><strong>Koruma Durumu:</strong> Heykelin mevcut durumu ve müze arşiv bilgileri</p>
                   </div>
                 </div>
@@ -312,7 +312,7 @@ export default function Methodology() {
                       <li><strong>1. Giriş:</strong> Heykelin ne olduğu ve nerede olduğu (10 saniye)</li>
                       <li><strong>2. Fiziksel Tanım:</strong> Boyutlar, malzeme, genel görünüş (30 saniye)</li>
                       <li><strong>3. Sanatsal Detaylar:</strong> Yüz, giyim, aksesuar özellikleri (45 saniye)</li>
-                      <li><strong>4. Tarihsel Bağlam:</strong> Maussollos, Pers İmparatorluğu, Halikarnassos (45 saniye)</li>
+                      <li><strong>4. Tarihsel Bağlam:</strong> Mausolos, Pers İmparatorluğu, Halikarnassos (45 saniye)</li>
                       <li><strong>5. Kazı ve Korunma:</strong> Keşif tarihi, müze bilgileri (30 saniye)</li>
                     </ol>
                     <p className="text-slate-700 text-sm mt-4"><strong>Toplam Süre:</strong> ~2 dakika (120 saniye)</p>

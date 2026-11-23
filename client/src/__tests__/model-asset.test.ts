@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 
 const modelUrl = new URL("../../public/models/maussollos.glb", import.meta.url);
 const arViewSource = readFileSync(
-  new URL("../pages/ArView.tsx", import.meta.url),
+  new URL("../components/StatueViewer.tsx", import.meta.url),
   "utf8"
 );
 

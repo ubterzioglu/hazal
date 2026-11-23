@@ -4,44 +4,55 @@
  * Hazal reviews and rewrites this copy, so it is deliberately kept out of the
  * JSX: updating a label or a paragraph should never mean touching layout code.
  */
+export type Language = "tr" | "en";
+
 export const artifact = {
-  title: "Maussollos Heykeli",
-  subtitle:
-    "Halikarnassos Mausolesi'nden mermer heykel, British Museum'da sergilenmektedir",
+  title: "Mausolos- Giyimli Erkek Heykeli",
+  subtitle: "Bodrum’un kültürel mirasının eksik parçalarından biri",
 
-  /** 2x2 künye grid'i. */
-  facts: [
-    { label: "Yükseklik", value: "3 metre" },
-    { label: "Malzeme", value: "Mermer" },
-    { label: "Dönem", value: "M.Ö. 350" },
-    { label: "Buluntu Yeri", value: "Halikarnassos" },
-  ],
-
-  /** "Detayları Göster" kartının içeriği. */
-  details: {
-    about:
-      "Bu devasa mermer heykel, Pers İmparatorluğu'nun bir satrabı olan Maussollos'u temsil eder. Antik Dünyanın Yedi Harikasından biri olan Halikarnassos Mausolesi'nde keşfedilmiştir.",
-    features: [
-      "Akan saçlar ve kısa kıvırcık sakal",
-      "Uzun chiton ve himation kumaş drape",
-      "Elinde kılıç kınını tutuyor",
-      "Bağlı metal çerçeveli sandalet",
-    ],
-    excavation:
-      "1857 yılında Sir Charles Thomas Newton tarafından kazılmıştır. Şu anda British Museum'un Yunan ve Roma Departmanı'nda (Galeri G21) sergilenmektedir.",
-    /** Eskiden sayfa altındaki 3 kolonluk bloktaydı, artık bu kartın içinde. */
-    provenance: [
-      { label: "Müze", value: "British Museum, Londra", note: "Yunan ve Roma Departmanı" },
-      { label: "Dönem", value: "Klasik Yunan", note: "Yaklaşık M.Ö. 350" },
-      { label: "Konum", value: "Halikarnassos Mausolesi", note: "Bodrum, Türkiye" },
-    ],
-    museumNumber: "1857,1220.232",
+  /**
+   * Bilgi kartı: küratöryel metin, başlıklar dahil Hazal'ın metniyle birebir.
+   * Eser Batı merkezli dönem etiketleriyle anılmaz: kültürü Karia'dır.
+   */
+  info: {
+    tr: {
+      facts: [
+        { label: "İsim", value: "Mausolos- Giyimli Erkek Heykeli" },
+        { label: "Yıl", value: "MÖ 350 Civarı" },
+        {
+          label: "Ölçüler",
+          value: "Yükseklik: 3 metre, Kalınlık: 0,68 metre, Genişlik: 1,12 metre",
+        },
+        { label: "Ait Olduğu Yer", value: "Bodrum/ Tepecik Mahallesi" },
+        { label: "Yitirildiği Yıl", value: "1856-1857" },
+        { label: "Götürüldüğü Yer", value: "Londra/British Museum" },
+      ],
+      descriptionLabel: "Açıklama",
+      description:
+        "Bodrum’un kültürel mirasının eksik parçalarından biri olan bu heykel, 170 yıldır ait olduğu topraklardan uzaktadır. Bodrumlu bir Türkün tarlasından Charles Thomas Newton tarafından çıkarılıp İngiltere’ye götürülmüştür. Hekatomnos’un oğlu Mausolos olduğu düşünülen bu görkemli heykelin kimin temsili olduğu kesin olarak bilinmemektedir ancak, ait olduğu Karia Bölgesi’ne ve Anadolu’ya özgü nitelikler gösterdiği şüphesizdir.",
+    },
+    en: {
+      facts: [
+        { label: "Name", value: "So Called Mausolos – Draped Male Statue" },
+        { label: "Date", value: "Circa 350 BC" },
+        {
+          label: "Dimensions",
+          value: "Height: 3 m; Thickness: 0.68 m; Width: 1.12 m",
+        },
+        { label: "Place of Origin", value: "Bodrum / Tepecik Neighbourhood" },
+        { label: "Year of Loss", value: "1856–1857" },
+        { label: "Taken to", value: "London / British Museum" },
+      ],
+      descriptionLabel: "Description",
+      description:
+        "One of the missing pieces of Bodrum’s cultural heritage, this statue has been far from the land to which it belongs for 170 years. It was unearthed by Charles Thomas Newton from a field belonging to a Turk from Bodrum and taken to England. Although this magnificent statue is thought to represent Mausolos, son of Hekatomnos, the identity of the person depicted remains uncertain. However, there is no doubt that it exhibits characteristics distinctive of the region of Caria and Anatolia, to which it belongs.",
+    },
   },
 
   /** Ana sayfadaki "Heykeli odana nasıl yerleştirirsin?" rehberi. */
   arGuide: {
     title: "Heykeli Odana Nasıl Yerleştirirsin?",
-    intro: "Telefonunla beş adımda Maussollos'u bulunduğun mekâna getir.",
+    intro: "Telefonunla beş adımda Mausolos'u bulunduğun mekâna getir.",
     steps: [
       {
         title: "Deneyimi aç",
@@ -66,7 +77,10 @@ export const artifact = {
     ],
     tips: [
       "iPhone'da Safari, Android'de Chrome kullan.",
-      "İyi aydınlatılmış, boş ve desenli olmayan bir zemin seç.",
+      "İyi aydınlatılmış, geniş, boş ve desenli olmayan bir zemin seç.",
+      "Heykeli göremiyorsan biraz geri çekil ya da iki parmağınla küçült.",
+      "Android telefonun Google AR hizmetini yüklemeni isterse yükle.",
+      "Kameran QR kodu okumazsa Google Lens veya bir QR okuyucu kullan.",
       "Bilgisayarda heykeli yalnızca 3 boyutlu döndürebilirsin, odaya yerleştirmek için telefon gerekir.",
     ],
   },

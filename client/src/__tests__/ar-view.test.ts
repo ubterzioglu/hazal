@@ -6,6 +6,7 @@ const read = (relative: string) =>
   readFileSync(new URL(relative, import.meta.url), "utf8");
 
 const arViewSource = read("../pages/ArView.tsx");
+const viewerSource = read("../components/StatueViewer.tsx");
 const appSource = read("../App.tsx");
 const homeSource = read("../pages/Home.tsx");
 
@@ -16,26 +17,38 @@ describe("AR experience", () => {
   });
 
   it("offers AR on every platform Android and iOS can reach", () => {
-    expect(arViewSource).toContain('ar-modes="webxr scene-viewer quick-look"');
-    expect(arViewSource).toContain('ar-placement="floor"');
-    // No ios-src on purpose: model-viewer generates the USDZ for Quick Look.
-    expect(arViewSource).not.toContain("ios-src");
+    expect(viewerSource).toContain('"ar-modes": "webxr scene-viewer quick-look"');
+    expect(viewerSource).toContain('"ar-placement": "floor"');
+    expect(arViewSource).toContain("<StatueViewer enableAr");
   });
 
-  it("shows the info button that leads back to the main site", () => {
-    expect(arViewSource).toContain("<InfoFab />");
-    expect(read("../components/InfoFab.tsx")).toContain('href="/"');
+  it("opens the information directly from a labelled button", () => {
+    expect(arViewSource).toContain("Bilgi Al");
+    expect(arViewSource).toContain("<ArtifactInfo />");
+    expect(arViewSource).not.toContain("InfoFab");
   });
 
-  it("credits the CC BY model author", () => {
-    expect(arViewSource).toContain("artfletch");
-    expect(arViewSource).toContain("CC BY 4.0");
+  it("lets visitors turn the audio description on and off", () => {
+    expect(arViewSource).toContain("<AudioToggle");
+    expect(read("../components/AudioToggle.tsx")).toContain("audio.pause()");
   });
 
-  it("falls back instead of showing a broken page when the model is missing", () => {
-    expect(arViewSource).toContain("sketchfab.com/models");
-    // A 200 + index.html from the SPA catch-all must not count as a real model.
-    expect(arViewSource).toContain('contentType.includes("text/html")');
+  it("credits the CC BY model author on both pages", () => {
+    for (const source of [arViewSource, homeSource]) {
+      expect(source).toContain("artfletch");
+      expect(source).toContain("CC BY 4.0");
+    }
+  });
+
+  it("shows only the single statue, never the two-statue embed", () => {
+    for (const source of [arViewSource, viewerSource, homeSource]) {
+      expect(source).not.toContain("sketchfab.com/models");
+    }
+    expect(homeSource).toContain("<StatueViewer");
+  });
+
+  it("treats the SPA's index.html as a missing model", () => {
+    expect(viewerSource).toContain('contentType.includes("text/html")');
   });
 
   it("links to the AR experience from the home page", () => {
