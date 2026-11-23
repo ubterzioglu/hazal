@@ -2,6 +2,12 @@
   "buildCommand": "pnpm build",
   "outputDirectory": "dist/public",
   "framework": "vite",
+  "headers": [
+    {
+      "source": "/models/(.*).usdz",
+      "headers": [{ "key": "Content-Type", "value": "model/vnd.usdz+zip" }]
+    }
+  ],
   "redirects": [
     {
       "source": "/qr",

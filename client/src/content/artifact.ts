@@ -33,11 +33,11 @@ export const artifact = {
     },
     en: {
       facts: [
-        { label: "Name", value: "So Called Mausolos – Draped Male Statue" },
+        { label: "Name", value: "So-called Mausolos – Draped Male Statue" },
         { label: "Date", value: "Circa 350 BC" },
         {
           label: "Dimensions",
-          value: "Height: 3 m; Thickness: 0.68 m; Width: 1.12 m",
+          value: "Height: 3 m; Depth: 0.68 m; Width: 1.12 m",
         },
         { label: "Place of Origin", value: "Bodrum / Tepecik Neighbourhood" },
         { label: "Year of Loss", value: "1856–1857" },
@@ -45,7 +45,7 @@ export const artifact = {
       ],
       descriptionLabel: "Description",
       description:
-        "One of the missing pieces of Bodrum’s cultural heritage, this statue has been far from the land to which it belongs for 170 years. It was unearthed by Charles Thomas Newton from a field belonging to a Turk from Bodrum and taken to England. Although this magnificent statue is thought to represent Mausolos, son of Hekatomnos, the identity of the person depicted remains uncertain. However, there is no doubt that it exhibits characteristics distinctive of the region of Caria and Anatolia, to which it belongs.",
+        "One of the missing pieces of Bodrum’s cultural heritage, this statue has been away from the land to which it belongs for 170 years. It was unearthed by Charles Thomas Newton from a field owned by a Turkish resident of Bodrum and taken to England. Although this magnificent statue is thought to represent Mausolos, son of Hekatomnos, the identity of the person depicted remains uncertain. However, there is no doubt that it exhibits characteristics distinctive of Caria and Anatolia, to which it belongs.",
     },
   },
 
@@ -77,6 +77,7 @@ export const artifact = {
     ],
     tips: [
       "iPhone'da Safari, Android'de Chrome kullan.",
+      "iPhone'da açılan ekranda üstten \"AR\" seçeneğine dokun. Heykel yarım boyutta gelir, iki parmağınla büyütebilirsin.",
       "İyi aydınlatılmış, geniş, boş ve desenli olmayan bir zemin seç.",
       "Heykeli göremiyorsan biraz geri çekil ya da iki parmağınla küçült.",
       "Android telefonun Google AR hizmetini yüklemeni isterse yükle.",

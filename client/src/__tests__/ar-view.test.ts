@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { QR_TARGET } from "../../../shared/qr";
 
@@ -20,6 +20,17 @@ describe("AR experience", () => {
     expect(viewerSource).toContain('"ar-modes": "webxr scene-viewer quick-look"');
     expect(viewerSource).toContain('"ar-placement": "floor"');
     expect(arViewSource).toContain("<StatueViewer enableAr");
+  });
+
+  it("serves iPhones a prebuilt USDZ with Apple's content type", () => {
+    const usdz = new URL("../../public/models/maussollos.usdz", import.meta.url);
+
+    expect(viewerSource).toContain('"ios-src": "/models/maussollos.usdz"');
+    expect(statSync(usdz).size).toBeLessThan(20 * 1024 * 1024);
+    expect(readFileSync(usdz).subarray(0, 2).toString()).toBe("PK");
+    expect(read("../../../server/app.ts")).toContain("model/vnd.usdz+zip");
+    expect(read("../../../vercel.json")).toContain("model/vnd.usdz+zip");
+    expect(read("../../../.gitignore")).toContain("!client/public/models/maussollos.usdz");
   });
 
   it("opens the information directly from a labelled button", () => {

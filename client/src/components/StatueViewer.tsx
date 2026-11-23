@@ -6,6 +6,8 @@ const MODEL_ALT = "Halikarnassos Mausoleionu'ndan Mausolos heykelinin 3 boyutlu 
 
 const AR_ATTRIBUTES = {
   ar: true,
+  // Prebuilt for Quick Look: generating it on the phone was unreliable.
+  "ios-src": "/models/maussollos.usdz",
   "ar-modes": "webxr scene-viewer quick-look",
   "ar-placement": "floor",
   "ar-scale": "auto",

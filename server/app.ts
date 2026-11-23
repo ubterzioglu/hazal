@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { QR_PATH, QR_TARGET } from "../shared/qr";
 
+const USDZ_CONTENT_TYPE = "model/vnd.usdz+zip";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -16,7 +17,14 @@ export function createApp(): Express {
   const app = express();
   const staticPath = resolveStaticPath();
 
-  app.use(express.static(staticPath));
+  app.use(
+    express.static(staticPath, {
+      setHeaders: (res, filePath) => {
+        // iOS only opens AR Quick Look when the file has Apple's USDZ type.
+        if (filePath.endsWith(".usdz")) res.setHeader("Content-Type", USDZ_CONTENT_TYPE);
+      },
+    })
+  );
 
   // Permanent QR entry. Must stay above the SPA catch-all, and must stay a 302:
   // a 301 is cached permanently by browsers, which would freeze QR_TARGET

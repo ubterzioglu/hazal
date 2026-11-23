@@ -11,6 +11,7 @@ const visibleSources = [
   "../pages/Home.tsx",
   "../pages/ArView.tsx",
   "../pages/Methodology.tsx",
+  "../content/methodology.ts",
   "../components/ArtifactInfo.tsx",
 ];
 
@@ -53,6 +54,14 @@ describe("artifact copy", () => {
       expect(source, path).not.toContain("Mausolesi");
       expect(source, path).not.toContain("M.Ö. 350");
     }
+  });
+
+  it("describes the model's real source in the methodology", () => {
+    const copy = read("../content/methodology.ts");
+    expect(copy).toContain("yeniden taranmadı");
+    expect(copy).toContain("artfletch");
+    expect(copy).toContain("CC BY 4.0");
+    expect(read("../pages/Methodology.tsx")).not.toMatch(/manus|Akademik Araştırma/i);
   });
 
   it("keeps the copy out of the layout so it can be handed over for editing", () => {
