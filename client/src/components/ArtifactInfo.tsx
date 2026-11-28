@@ -7,8 +7,8 @@ const LANGUAGES: readonly { code: Language; label: string }[] = [
 ];
 
 /** The statue's record and description, switchable between Turkish and English. */
-export default function ArtifactInfo() {
-  const [language, setLanguage] = useState<Language>("tr");
+export default function ArtifactInfo({ initialLanguage = "tr" }: { initialLanguage?: Language }) {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const copy = artifact.info[language];
 
   return (

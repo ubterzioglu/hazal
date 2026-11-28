@@ -35,8 +35,21 @@ describe("AR experience", () => {
 
   it("opens the information directly from a labelled button", () => {
     expect(arViewSource).toContain("Bilgi Al");
-    expect(arViewSource).toContain("<ArtifactInfo />");
+    expect(arViewSource).toContain("<ArtifactInfo initialLanguage={language} />");
     expect(arViewSource).not.toContain("InfoFab");
+  });
+
+  it("offers English information and narration straight from the AR screen", () => {
+    expect(arViewSource).toContain('<ControlRow language="tr" />');
+    expect(arViewSource).toContain('<ControlRow language="en" />');
+    expect(arViewSource).toContain("Info (EN)");
+    expect(arViewSource).toContain("Audio (EN)");
+
+    for (const ext of ["mp3", "wav"]) {
+      const file = new URL(`../../public/audio/maussollos-description-en.${ext}`, import.meta.url);
+      expect(statSync(file).size).toBeGreaterThan(100 * 1024);
+    }
+    expect(read("../components/AudioToggle.tsx")).toContain("/audio/maussollos-description-en");
   });
 
   it("lets visitors turn the audio description on and off", () => {
